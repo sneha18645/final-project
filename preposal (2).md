@@ -8,7 +8,7 @@ Group members have circuit materials from another class and would like to see wh
 
 ## If you plan to collaborate with one or two classmates, what are their names?
 
-Sneha Gonipati
+Cynthia Zern
 
 ## Do you have any questions of your own?
 
