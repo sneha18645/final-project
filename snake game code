@@ -118,4 +118,28 @@ def gameLoop():
     pygame.quit()
     quit()
 
-gameLoop()
+#gameLoop()
+#menu
+y =  True
+while y == True:
+    print("")
+    print("1) Level 1")
+    print("2) Level 2")
+    print("3) Level 3")
+    print("4) Level 4")
+    print("5) Level 5")
+    print("6) Finish")
+    choice =  int(input("Please select one of the following options: "))
+    if choice == 1:
+        gameLoop()
+    if choice == 2:
+        level2()
+    if choice == 3:
+        level3()
+    if choice == 4:
+        level4()
+    if choice == 5:
+        level5()
+    if choice == 6:
+        print("Thank you for playing!")
+        y = False
