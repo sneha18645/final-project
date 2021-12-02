@@ -42,6 +42,7 @@ def endmessage(msg,color,size):
     mesg = font.render(msg, False, color)
     screen.blit(mesg, [swidth/4,sheight/3])
 
+
 #level 1 -> basic game
 def gameLoop():
     game_over = False
@@ -131,21 +132,6 @@ def level2():
     clock = pygame.time.Clock()
     snake_speed = 30
 
-    def Your_score(score):
-        font = pygame.font.SysFont(None,30)
-        value = font.render("Your Score: " + str(score), True, white)
-        screen.blit(value, [0, 0])
-
-    def our_snake(snake_size, snake_list):
-        for x in snake_list:
-            pygame.draw.circle(screen,blue,[x[0],x[1]],snake_size/2)
-
-
-    def endmessage(msg,color,size):
-        font = pygame.font.SysFont(None,size)
-        mesg = font.render(msg, False, color)
-        screen.blit(mesg, [swidth/4,sheight/3])
-
     game_over = False
     game_close = False
     
@@ -232,21 +218,6 @@ def level3():
 
     clock = pygame.time.Clock()
     snake_speed = 50
- 
-    def Your_score(score):
-        font = pygame.font.SysFont(None,30)
-        value = font.render("Your Score: " + str(score), True, white)
-        screen.blit(value, [0, 0])
-
-    def our_snake(snake_size, snake_list):
-        for x in snake_list:
-            pygame.draw.circle(screen,blue,[x[0],x[1]],snake_size/2)
-
-
-    def endmessage(msg,color,size):
-        font = pygame.font.SysFont(None,size)
-        mesg = font.render(msg, False, color)
-        screen.blit(mesg, [swidth/4,sheight/3])
 
     game_over = False
     game_close = False
@@ -335,122 +306,6 @@ def level4():
     clock = pygame.time.Clock()
     snake_speed = random.randint(30,75)
 
-    def Your_score(score):
-        font = pygame.font.SysFont(None,30)
-        value = font.render("Your Score: " + str(score), True, white)
-        screen.blit(value, [0, 0])
-
-    def our_snake(snake_size, snake_list):
-        for x in snake_list:
-            pygame.draw.circle(screen,blue,[x[0],x[1]],snake_size/2)
-
-
-    def endmessage(msg,color,size):
-        font = pygame.font.SysFont(None,size)
-        mesg = font.render(msg, False, color)
-        screen.blit(mesg, [swidth/4,sheight/3])
-
-    game_over = False
-    game_close = False
-    
-    x1 = swidth/2
-    y1 = sheight/2
-
-    x1chan = 0
-    y1chan = 0
-
-    snake_List = []
-    Length_of_snake = 1
-
-    foodx = round(random.randrange(0, swidth - snake_size)/10)*10
-    foody = round(random.randrange(0, sheight - snake_size)/10)*10
-
-    while game_over == False:#keeps game on screen
-        while game_close == True:
-            endmessage("ha you suck. press q to quit or p to play level1",red,20)
-            pygame.display.update()
-            
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT: #makes the close button work
-                    game_over = True
-                    game_close = False
-                elif event.type == pygame.KEYDOWN: 
-                    if event.key == pygame.K_q:
-                        game_over = True
-                        game_close = False
-                    if event.key == pygame.K_p:
-                       gameLoop()
-
-        for event in pygame.event.get():
-        
-                
-            if event.type == pygame.KEYDOWN: #makes arrow keys work
-                if event.key == pygame.K_LEFT:
-                    x1chan = -snake_size
-                    y1chan = 0
-                elif event.key == pygame.K_RIGHT:
-                    x1chan = snake_size
-                    y1chan = 0
-                elif event.key == pygame.K_UP:
-                    x1chan = 0
-                    y1chan = -snake_size
-                elif event.key == pygame.K_DOWN:
-                    x1chan = 0
-                    y1chan = snake_size
-        if x1 >= swidth or x1 < 0 or y1 >= sheight or y1 < 0:
-            game_close = True
-
-
-        x1 += x1chan
-        y1 += y1chan
-
-        screen.fill(black)
-        pygame.draw.circle(screen,green,[foodx,foody],snake_size/2)
-        snake_Head = []
-        snake_Head.append(x1)
-        snake_Head.append(y1)
-        snake_List.append(snake_Head)
-        if len(snake_List) > Length_of_snake:
-            del snake_List[0]
- 
-        for x in snake_List[:-1]:
-            if x == snake_Head:
-                game_close = True
- 
-        our_snake(snake_size, snake_List)
-        Your_score(Length_of_snake - 1)
-        pygame.display.update()
-
-        if x1 == foodx and y1 == foody:
-            foodx = round(random.randrange(0, swidth - snake_size)/10)*10
-            foody = round(random.randrange(0, sheight - snake_size)/10)*10
-            Length_of_snake += 1
-        clock.tick(snake_speed)#set snake speed
-    
-    pygame.quit()
-    quit()
-#Level 6 -> frenzy level
-def level6():
-    snake_size = 10
-
-    clock = pygame.time.Clock()
-    snake_speed = random.randint(55,110)
-
-    def Your_score(score):
-        font = pygame.font.SysFont(None,30)
-        value = font.render("Your Score: " + str(score), True, white)
-        screen.blit(value, [0, 0])
-
-    def our_snake(snake_size, snake_list):
-        for x in snake_list:
-            color =  random.choice(['white','red','blue','yellow','cyan','magenta'])
-            pygame.draw.circle(screen,color,[x[0],x[1]],snake_size/2)
-
-    def endmessage(msg,color,size):
-        font = pygame.font.SysFont(None,size)
-        mesg = font.render(msg, False, color)
-        screen.blit(mesg, [swidth/4,sheight/3])
-
     game_over = False
     game_close = False
     
@@ -535,12 +390,12 @@ def level6():
 y =  True
 while y == True:
     print("")
-    print("1) Level 1 Basic Game")
-    print("2) Level 2 Bigger Snake and Bigger Food")
-    print("3) Level 3 Double Speed")
-    print("4) Level 4 Random Spped Snake")
-    print("5) Level 5 Double Food")
-    print("6) Level 6 Frenzy Level")
+    print("1) Level 1")
+    print("2) Level 2")
+    print("3) Level 3")
+    print("4) Level 4")
+    print("5) Level 5")
+    print("6) Level 6")
     print("7) Finish")
     choice =  int(input("Please select one of the following options: "))
     if choice == 1:
