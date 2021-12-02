@@ -385,6 +385,99 @@ def level4():
     
     pygame.quit()
     quit()
+#level 5 -> 2 pieces of food
+def level5():
+    game_over = False
+    game_close = False
+    
+    x1 = swidth/2
+    y1 = sheight/2
+
+    x1chan = 0
+    y1chan = 0
+
+    snake_List = []
+    Length_of_snake = 1
+    
+    foodx = round(random.randrange(0, swidth - snake_size)/10)*10
+    foody = round(random.randrange(0, sheight - snake_size)/10)*10
+    foodx2 = round(random.randrange(0, swidth - snake_size)/10)*10
+    foody2 = round(random.randrange(0, sheight - snake_size)/10)*10
+    
+
+
+    while game_over == False:#keeps game on screen
+        while game_close == True:
+            endmessage("ha you suck. press q to quit or p to play level1",red,20)
+            pygame.display.update()
+            
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT: #makes the close button work
+                    game_over = True
+                    game_close = False
+                elif event.type == pygame.KEYDOWN: 
+                    if event.key == pygame.K_q:
+                        game_over = True
+                        game_close = False
+                    if event.key == pygame.K_p:
+                       gameLoop()
+
+        for event in pygame.event.get():
+                
+            if event.type == pygame.KEYDOWN: #makes arrow keys work
+                if event.key == pygame.K_LEFT:
+                    x1chan = -snake_size
+                    y1chan = 0
+                elif event.key == pygame.K_RIGHT:
+                    x1chan = snake_size
+                    y1chan = 0
+                elif event.key == pygame.K_UP:
+                    x1chan = 0
+                    y1chan = -snake_size
+                elif event.key == pygame.K_DOWN:
+                    x1chan = 0
+                    y1chan = snake_size
+        if x1 >= swidth or x1 < 0 or y1 >= sheight or y1 < 0:
+            game_close = True
+
+
+        x1 += x1chan
+        y1 += y1chan
+
+        screen.fill(black)
+        pygame.draw.circle(screen,green,[foodx,foody],snake_size/2)
+        pygame.draw.circle(screen,green,[foodx2,foody2],snake_size/2)
+        snake_Head = []
+        snake_Head.append(x1)
+        snake_Head.append(y1)
+        snake_List.append(snake_Head)
+        if len(snake_List) > Length_of_snake:
+            del snake_List[0]
+ 
+        for x in snake_List[:-1]:
+            if x == snake_Head:
+                game_close = True
+ 
+        our_snake(snake_size, snake_List)
+        Your_score(Length_of_snake - 1)
+        pygame.display.update()
+        
+
+        if x1 == foodx and y1 == foody:
+            foodx = round(random.randrange(0, swidth - snake_size)/10)*10
+            foody = round(random.randrange(0, sheight - snake_size)/10)*10
+            Length_of_snake += 1
+        
+        
+        if x1 == foodx2 and y1 == foody2:
+            foodx2 = round(random.randrange(0, swidth - snake_size)/10)*10
+            foody2 = round(random.randrange(0, sheight - snake_size)/10)*10
+            Length_of_snake += 1
+        clock.tick(snake_speed)#set snake speed
+    
+    pygame.quit()
+    quit()
+
 
 #Level 6 -> frenzy level
 def level6():
