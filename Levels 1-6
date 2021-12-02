@@ -62,7 +62,7 @@ def gameLoop():
 
     while game_over == False:#keeps game on screen
         while game_close == True:
-            endmessage("ha you suck. press q to quit or p to play level 1",red,20)
+            endmessage("ha you suck. press q to quit or p pick another level",red,20)
             pygame.display.update()
             
             for event in pygame.event.get():
@@ -74,7 +74,7 @@ def gameLoop():
                         game_over = True
                         game_close = False
                     if event.key == pygame.K_p:
-                       gameLoop()
+                       menu()
 
         for event in pygame.event.get():
         
@@ -149,7 +149,7 @@ def level2():
 
     while game_over == False:#keeps game on screen
         while game_close == True:
-            endmessage("ha you suck. press q to quit or p to play level1",red,20)
+            endmessage("ha you suck. press q to quit or p pick another level",red,20)
             pygame.display.update()
             
             for event in pygame.event.get():
@@ -161,7 +161,7 @@ def level2():
                         game_over = True
                         game_close = False
                     if event.key == pygame.K_p:
-                       gameLoop()
+                       menu()
 
         for event in pygame.event.get():
         
@@ -236,7 +236,7 @@ def level3():
 
     while game_over == False:#keeps game on screen
         while game_close == True:
-            endmessage("ha you suck. press q to quit or p to play level1",red,20)
+            endmessage("ha you suck. press q to quit or p pick another level",red,20)
             pygame.display.update()
             
             for event in pygame.event.get():
@@ -248,7 +248,7 @@ def level3():
                         game_over = True
                         game_close = False
                     if event.key == pygame.K_p:
-                       gameLoop()
+                       menu()
 
         for event in pygame.event.get():
         
@@ -323,7 +323,7 @@ def level4():
 
     while game_over == False:#keeps game on screen
         while game_close == True:
-            endmessage("ha you suck. press q to quit or p to play level1",red,20)
+            endmessage("ha you suck. press q to quit or p pick another level",red,20)
             pygame.display.update()
             
             for event in pygame.event.get():
@@ -335,7 +335,7 @@ def level4():
                         game_over = True
                         game_close = False
                     if event.key == pygame.K_p:
-                       gameLoop()
+                       menu()
 
         for event in pygame.event.get():
         
@@ -408,7 +408,7 @@ def level5():
 
     while game_over == False:#keeps game on screen
         while game_close == True:
-            endmessage("ha you suck. press q to quit or p to play level1",red,20)
+            endmessage("ha you suck. press q to quit or p pick another level",red,20)
             pygame.display.update()
             
             for event in pygame.event.get():
@@ -420,7 +420,7 @@ def level5():
                         game_over = True
                         game_close = False
                     if event.key == pygame.K_p:
-                       gameLoop()
+                       menu()
 
         for event in pygame.event.get():
                 
@@ -486,20 +486,10 @@ def level6():
     clock = pygame.time.Clock()
     snake_speed = random.randint(55,90)
 
-    def Your_score(score):
-        font = pygame.font.SysFont(None,30)
-        value = font.render("Your Score: " + str(score), True, white)
-        screen.blit(value, [0, 0])
-
     def our_snake(snake_size, snake_list):
         for x in snake_list:
             color =  random.choice(['white','red','blue','yellow','cyan','magenta'])
             pygame.draw.circle(screen,color,[x[0],x[1]],snake_size/2)
-
-    def endmessage(msg,color,size):
-        font = pygame.font.SysFont(None,size)
-        mesg = font.render(msg, False, color)
-        screen.blit(mesg, [swidth/4,sheight/3])
 
     game_over = False
     game_close = False
@@ -518,7 +508,7 @@ def level6():
 
     while game_over == False:#keeps game on screen
         while game_close == True:
-            endmessage("ha you suck. press q to quit or p to play level1",red,20)
+            endmessage("ha you suck. press q to quit or p pick another level",red,20)
             pygame.display.update()
             
             for event in pygame.event.get():
@@ -530,7 +520,7 @@ def level6():
                         game_over = True
                         game_close = False
                     if event.key == pygame.K_p:
-                       gameLoop()
+                       menu()
 
         for event in pygame.event.get():
         
@@ -582,29 +572,33 @@ def level6():
     quit()
 
 #menu
-y =  True
-while y == True:
-    print("")
-    print("1) Level 1 Basic Game")
-    print("2) Level 2 Bigger Snake and Bigger Food")
-    print("3) Level 3 Double Speed")
-    print("4) Level 4 Random Speed Snake")
-    print("5) Level 5 Double Food")
-    print("6) Level 6 Frenzy Level")
-    print("7) Finish")
-    choice =  int(input("Please select one of the following options: "))
-    if choice == 1:
-        gameLoop()
-    if choice == 2:
-        level2()
-    if choice == 3:
-        level3()
-    if choice == 4:
-        level4()
-    if choice == 5:
-        level5()
-    if choice == 6:
-        level6()
-    if choice == 7:
-        print("Thank you for playing!")
-        y = False
+def menu():
+    y =  True
+    while y == True:
+        print("")
+        print("1) Level 1 Basic Game")
+        print("2) Level 2 Bigger Snake and Bigger Food")
+        print("3) Level 3 Double Speed")
+        print("4) Level 4 Random Speed Snake")
+        print("5) Level 5 Double Food")
+        print("6) Level 6 Frenzy Level")
+        print("7) Finish")
+        choice =  int(input("Please select one of the following options: "))
+        if choice == 1:
+            gameLoop()
+        if choice == 2:
+            level2()
+        if choice == 3:
+            level3()
+        if choice == 4:
+            level4()
+        if choice == 5:
+            level5()
+        if choice == 6:
+            level6()
+        if choice == 7:
+            print("Thank you for playing!")
+            pygame.quit()
+            quit()
+            y = False
+menu()
