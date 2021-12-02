@@ -391,7 +391,7 @@ def level6():
     snake_size = 10
 
     clock = pygame.time.Clock()
-    snake_speed = random.randint(55,110)
+    snake_speed = random.randint(55,90)
 
     def Your_score(score):
         font = pygame.font.SysFont(None,30)
