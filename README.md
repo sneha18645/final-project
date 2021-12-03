@@ -5,4 +5,4 @@ This project was a snake game inspired by a game that we cited in our code. We c
 
 Difficulties that we faced were understanding the base code and isntalling Pygames for the first time, however, we were able to overcome these difficulties with time to make a finished product that we are proud of. Additionally, our first idea with the force sensor was not as realistic as our idea with the Halocode Makerblock so we are glad we were able to make a substitution without sacrificing functionality. Through this project we learned how to use GitHub, Pygames, and how to independently troubleshoot and it was enjoyable to make this project in general. My favorite parts were making our own project as well as making the frenzy level with different colors. Overall, I found it very enjoyable to make a project without instructions or strict confines and had a great time learning new things.
 
-VIDEO SUBMISSION LINK HERE:
+VIDEO SUBMISSION LINK HERE: https://youtu.be/lwuDkp5EGFQ
