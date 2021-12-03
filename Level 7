@@ -1,0 +1,115 @@
+#We did not have the correct software to fully run this in Python and the code for the game was too long to run in mBlock but I got the Halocode Makeblock to light up and proved
+#that it would work if we were able to import halocode and event in IDLE
+
+#inspired by https://www.edureka.co/blog/snake-game-with-pygame/
+#http://docs.makeblock.com/halocode/en/tutorials/use-python.html
+import pygame
+import time
+import random 
+import halocode
+import event
+
+swidth = 800 
+sheight = 600 
+screen = pygame.display.set_mode((swidth,sheight))
+
+white = (255,255,255)
+blue = (0,0,255)
+red = (255,0,0)
+green = (0,255,0)
+black = (0,0,0)
+
+snake_size = 10
+clock = pygame.time.Clock()
+snake_speed = 30
+
+def Your_score(score):
+    font = pygame.font.Sysfont(None,30)
+    value = font.render("Your Score: " + str(score),True, white)
+    screen.blit(value, [0,0])
+
+def our_snake(snake_size, snake_list):
+    for x in snake_list:
+        pygame.draw.circle(screen,blue,[x[0],x[1]],snake_size/2)
+
+
+def endmessage(msg,color,size):
+    font = pygame.font.SysFont(None,size)
+    mesg = font.render(msg, False, color)
+    screen.blit(mesg, [swidth/4,sheight/3])
+
+
+#level 1 -> basic game
+def gameLoop():
+    game_over = False
+    game_close = False
+    
+    x1 = swidth/2
+    y1 = sheight/2
+
+    x1chan = 0
+    y1chan = 0
+
+    snake_List = []
+    Length_of_snake = 1
+
+    foodx = round(random.randrange(0, swidth - snake_size)/10)*10
+    foody = round(random.randrange(0, sheight - snake_size)/10)*10
+
+    while game_over == False:#keeps game on screen
+        while game_close == True:
+            endmessage("ha you suck. press q to quit or p to play level 1",red,20)
+            pygame.display.update()
+            
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT: #makes the close button work
+                    game_over = True
+                    game_close = False
+                elif event.type == pygame.KEYDOWN: 
+                    if event.key == pygame.K_q:
+                        game_over = True
+                        game_close = False
+                    if event.key == pygame.K_p:
+                       gameLoop()
+
+        for event in pygame.event.get():
+        
+                
+            if event.type == pygame.KEYDOWN: #makes arrow keys work
+                if on_button_pressed == pygame.K_LEFT:
+                    x1chan = -snake_size
+                    y1chan = 0
+             
+        if x1 >= swidth or x1 < 0 or y1 >= sheight or y1 < 0:
+            game_close = True
+
+
+        x1 += x1chan
+        y1 += y1chan
+
+        screen.fill(black)
+        pygame.draw.circle(screen,green,[foodx,foody],snake_size/2)
+        snake_Head = []
+        snake_Head.append(x1)
+        snake_Head.append(y1)
+        snake_List.append(snake_Head)
+        if len(snake_List) > Length_of_snake:
+            del snake_List[0]
+ 
+        for x in snake_List[:-1]:
+            if x == snake_Head:
+                game_close = True
+ 
+        our_snake(snake_size, snake_List)
+        Your_score(Length_of_snake - 1)
+        pygame.display.update()
+
+        if x1 == foodx and y1 == foody:
+            foodx = round(random.randrange(0, swidth - snake_size)/10)*10
+            foody = round(random.randrange(0, sheight - snake_size)/10)*10
+            Length_of_snake += 1
+        clock.tick(snake_speed)#set snake speed
+    
+    pygame.quit()
+    quit()
+gameLoop()
